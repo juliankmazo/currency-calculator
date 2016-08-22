@@ -1,0 +1,63 @@
+<div class="layout-column layout-align-center-center">
+  <div class="layout-row min-width-30">
+    {{#paper-select
+      placeholder="Currency"
+      flex=100
+      value=currencyToConvert.fullName
+      onChange=(action (mut currencyToConvert))}}
+      {{#each currencies as |currency|}}
+        {{#paper-option value=currency}}
+          {{currency.name}}, {{currency.code}}
+        {{/paper-option}}
+      {{/each}}
+    {{/paper-select}}
+  </div>
+
+  <div class="layout-row layout-align-center-center">
+    <div class="flex">Base currency</div>
+    <div class="flex">
+      {{paper-input
+        label="Currency"
+        value='USD'
+        onChange=null
+        disabled=true}}
+    </div>
+    <div class="flex">
+      {{paper-input
+        label="Rate"
+        value='--'
+        onChange=null
+        disabled=true}}
+    </div>
+    <div class="flex">
+      {{paper-input
+        label="Total"
+        value=totalToConvert
+        onChange=(action (mut totalToConvert))}}
+    </div>
+  </div>
+
+  <div class="layout-row layout-align-center-center">
+    <div class="flex">Convert to</div>
+    <div class="flex">
+      {{paper-input
+        label="Currency"
+        value=currencyToConvert.fullName
+        onChange=null
+        disabled=true}}
+    </div>
+    <div class="flex">
+      {{paper-input
+        label="Rate"
+        value=currencyToConvert.rate
+        onChange=null
+        disabled=true}}
+    </div>
+    <div class="flex">
+      {{paper-input
+        label="Total"
+        value=total
+        onChange=null}}
+    </div>
+  </div>
+</div>
