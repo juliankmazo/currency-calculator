@@ -7,7 +7,7 @@
       onChange=(action (mut currencyToConvert))}}
       {{#each currencies as |currency|}}
         {{#paper-option value=currency}}
-          {{currency.name}}, {{currency.code}}
+          {{currency.fullName}}
         {{/paper-option}}
       {{/each}}
     {{/paper-select}}
@@ -18,22 +18,23 @@
     <div class="flex">
       {{paper-input
         label="Currency"
-        value='USD'
+        value=baseCurrency.fullName
         onChange=null
         disabled=true}}
     </div>
     <div class="flex">
       {{paper-input
         label="Rate"
-        value='--'
+        value=baseCurrency.rate
         onChange=null
         disabled=true}}
     </div>
     <div class="flex">
       {{paper-input
         label="Total"
-        value=totalToConvert
-        onChange=(action (mut totalToConvert))}}
+        value=baseCurrency.formatedAmount
+        onChange=null
+        disabled=true}}
     </div>
   </div>
 

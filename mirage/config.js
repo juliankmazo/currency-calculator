@@ -1,3 +1,4 @@
+import { faker } from 'ember-cli-mirage';
 export default function() {
 
   // These comments are here to help you get started. Feel free to delete them.
@@ -25,7 +26,7 @@ export default function() {
   */
 // this.namespace = 'api';
 
-this.get('/currencies', () => {
+  this.get('/currencies', () => {
     return {
       currencies: [
         {id: 1, code: 'CAD', name: "Canadian Dollar", rate: 1.29},
@@ -39,8 +40,19 @@ this.get('/currencies', () => {
         {id: 9, code: 'GBP', name: "Pound Sterling", rate: 0.76},
         {id: 10, code: 'BRL', name: "Brazilian Real", rate: 3.20},
         {id: 11, code: 'USD', name: "US Dollar", rate: 1},
-        
       ]
+    };
+  });
+
+  this.get('/currencies/:id', () => {
+    return {
+      currency: {
+        id: 11, 
+        code: 'USD', 
+        name: "US Dollar", 
+        rate: 1,
+        amount: faker.finance.amount(),
+      },   
     };
   });
 }
