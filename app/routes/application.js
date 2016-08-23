@@ -1,8 +1,13 @@
 import Ember from 'ember';
-const { Route } = Ember;
+const { Route, RSVP } = Ember;
 
 export default Route.extend({
   model() {
-    return this.store.findAll('currency');
+    return RSVP.hash({
+      currencies: this.store.findAll('currency').then((currencies) => {
+        return currencies.sortBy('name');
+      }),
+      baseCurrency: this.store.findRecord('currency', 11),
+    });
   }
 });
